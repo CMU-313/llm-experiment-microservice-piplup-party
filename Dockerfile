@@ -1,17 +1,6 @@
-FROM python:3.12
-
-# Set working directory
+FROM python:3.11-slim
 WORKDIR /app
-
-# Copy requirements and install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of the app
 COPY . .
-
-# Expose the port Flask runs on
-EXPOSE 5000
-
-# Run the Flask app
-CMD ["flask", "run", "--host=0.0.0.0"]
+RUN pip install -r requirements.txt
+EXPOSE 8080
+CMD ["python", "app.py"]
